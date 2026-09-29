@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  >
+
+  <title>Em đồng ý làm người yêu anh nha? ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family:
+        "Segoe UI",
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.75),
+          transparent 28%
+        ),
+        linear-gradient(
+          135deg,
+          #ffd6e7 0%,
+          #fbc8e8 35%,
+          #d8c8ff 100%
+        );
+
+      color: #5d3655;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================== */
+
+    .background-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      opacity: 0;
+      animation: floatHeart linear infinite;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform:
+          translateY(0)
+          rotate(0deg)
+          scale(0.8);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.5;
+      }
+
+      50% {
+        transform:
+          translateY(-50vh)
+          rotate(20deg)
+          scale(1);
+        opacity: 0.75;
+      }
+
+      100% {
+        transform:
+          translateY(-115vh)
+          rotate(-20deg)
+          scale(0.7);
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       APP
+    ========================== */
+
+    #app {
+      position: relative;
+      z-index: 2;
+
+      min-height: 100svh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .card {
+      width: min(94vw, 650px);
+
+      padding: clamp(24px, 5vw, 42px);
+
+      border-radius: 32px;
+
+      background:
+        rgba(255, 255, 255, 0.78);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border: 1px solid rgba(255, 255, 255, 0.75);
+
+      box-shadow:
+        0 25px 70px rgba(125, 65, 125, 0.22),
+        0 8px 25px rgba(125, 65, 125, 0.12);
+
+      text-align: center;
+
+      animation: cardAppear 0.7s ease;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .title {
+      font-size: clamp(26px, 6vw, 42px);
+      line-height: 1.2;
+      font-weight: 800;
+
+      color: #e04f91;
+
+      margin-bottom: 22px;
+
+      text-shadow:
+        0 3px 12px rgba(224, 79, 145, 0.18);
+    }
+
+    .subtitle {
+      font-size: clamp(18px, 4vw, 25px);
+      font-weight: 700;
+      color: #8d5b85;
+      margin-bottom: 18px;
+    }
+
+    /* =========================
+       GIF
+    ========================== */
+
+    .gif-container {
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin: 10px auto 24px;
+
+      min-height: 180px;
+    }
+
+    .gif-container img {
+      display: block;
+
+      width: min(100%, 420px);
+      max-height: 380px;
+
+      object-fit: contain;
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 15px 35px rgba(120, 60, 120, 0.16);
+
+      animation: imagePop 0.5s ease;
+    }
+
+    @keyframes imagePop {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* =========================
+       BUTTONS
+    ========================== */
+
+    .buttons {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+
+      margin-top: 22px;
+
+      min-height: 100px;
+
+      transition: all 0.4s ease;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+
+      border-radius: 999px;
+
+      font-weight: 900;
+
+      min-height: 54px;
+
+      padding: 14px 26px;
+
+      transition:
+        transform 0.35s cubic-bezier(.34,1.56,.64,1),
+        padding 0.35s ease,
+        font-size 0.35s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+
+      user-select: none;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active {
+      transform: scale(0.94) !important;
+    }
+
+    .yes-btn {
+      background:
+        linear-gradient(
+          135deg,
+          #ff5fa2,
+          #ff3f7f
+        );
+
+      color: white;
+
+      box-shadow:
+        0 9px 25px rgba(255, 63, 127, 0.35);
+
+      font-size: 18px;
+
+      min-width: 170px;
+    }
+
+    .yes-btn:hover {
+      box-shadow:
+        0 13px 32px rgba(255, 63, 127, 0.45);
+    }
+
+    .no-btn {
+      background:
+        rgba(255, 255, 255, 0.9);
+
+      color: #9c638f;
+
+      border: 2px solid #f1b9d7;
+
+      box-shadow:
+        0 6px 16px rgba(130, 70, 130, 0.1);
+
+      font-size: 16px;
+
+      min-width: 120px;
+    }
+
+    .no-btn:hover {
+      background: #fff5fa;
+    }
+
+    /* =========================
+       SUCCESS
+    ========================== */
+
+    .success .title {
+      color: #ed3d87;
+      animation: celebrateTitle 0.8s ease;
+    }
+
+    @keyframes celebrateTitle {
+      0% {
+        transform: scale(0.6) rotate(-5deg);
+      }
+
+      70% {
+        transform: scale(1.08) rotate(3deg);
+      }
+
+      100% {
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    .success-message {
+      font-size: clamp(19px, 4vw, 26px);
+      font-weight: 800;
+
+      color: #8d5080;
+
+      margin-bottom: 18px;
+    }
+
+    /* =========================
+       CONFETTI
+    ========================== */
+
+    .confetti-container {
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      overflow: hidden;
+
+      z-index: 20;
+    }
+
+    .confetti {
+      position: absolute;
+
+      width: 9px;
+      height: 15px;
+
+      top: -30px;
+
+      animation:
+        confettiFall
+        var(--duration)
+        linear
+        forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform:
+          translateY(-20px)
+          rotate(0deg);
+      }
+
+      100% {
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+      }
+    }
+
+    /* =========================
+       FINAL VIDEO
+    ========================== */
+
+    .final-screen .title {
+      color: #dc397e;
+    }
+
+    .video-wrapper {
+      position: relative;
+
+      width: 100%;
+
+      margin: 20px auto;
+
+      border-radius: 24px;
+
+      overflow: hidden;
+
+      background: #000;
+
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.2);
+    }
+
+    .video-wrapper video {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      max-height: 70vh;
+
+      object-fit: contain;
+
+      background: #000;
+    }
+
+    .sound-btn {
+      display: none;
+
+      margin: 15px auto 0;
+
+      border: none;
+
+      border-radius: 999px;
+
+      padding: 13px 22px;
+
+      background: #ff5c9e;
+
+      color: white;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 20px rgba(255, 92, 158, 0.3);
+    }
+
+    .sound-btn.show {
+      display: inline-block;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .restart-btn {
+      margin-top: 18px;
+
+      border: none;
+
+      border-radius: 999px;
+
+      padding: 12px 22px;
+
+      background: rgba(255, 255, 255, 0.85);
+
+      color: #995b88;
+
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 600px) {
+      #app {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 24px 16px;
+        border-radius: 26px;
+      }
+
+      .gif-container {
+        min-height: 150px;
+      }
+
+      .gif-container img {
+        max-height: 300px;
+        border-radius: 18px;
+      }
+
+      .buttons {
+        gap: 10px;
+      }
+
+      .btn {
+        min-height: 50px;
+        padding: 12px 15px;
+      }
+
+      .yes-btn {
+        min-width: 145px;
+      }
+
+      .no-btn {
+        min-width: 100px;
+      }
+
+      .video-wrapper {
+        border-radius: 18px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .buttons {
+        gap: 7px;
+      }
+
+      .yes-btn {
+        min-width: 130px;
+      }
+
+      .no-btn {
+        min-width: 90px;
+      }
+
+      .btn {
+        padding-left: 11px;
+        padding-right: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating hearts -->
+  <div class="background-hearts" id="hearts"></div>
+
+  <!-- Main app -->
+  <main id="app"></main>
+
+  <!-- Confetti -->
+  <div
+    class="confetti-container"
+    id="confetti"
+  ></div>
+
+
+  <script>
+    /*
+     * ==========================================================
+     * CONFIG
+     * ==========================================================
+     */
+
+    const GIFS = {
+      initial:
+        "https://deargift.love/troll-ny/mocha.gif",
+
+      no1:
+        "https://deargift.love/troll-ny/mocha2.gif",
+
+      no2:
+        "https://deargift.love/troll-ny/mocha4.gif",
+
+      no3:
+        "https://deargift.love/troll-ny/mocha3.gif",
+
+      success1:
+        "https://deargift.love/troll-ny/mocha9final.gif",
+
+      success2:
+        "https://deargift.love/troll-ny/mocha5final.gif",
+
+      success3:
+        "https://deargift.love/troll-ny/mocha6final.gif"
+    };
+
+    const FINAL_VIDEO =
+      "https://www.image2url.com/r2/default/videos/1790669825196-2ba30ab4-a356-44db-b381-a846b873d50b.mp4";
+
+
+    /*
+     * ==========================================================
+     * STATE
+     * ==========================================================
+     */
+
+    let noCount = 0;
+
+    let currentScreen = "question";
+
+    let successGifIndex = 0;
+
+    let successGifTimer = null;
+
+
+    /*
+     * ==========================================================
+     * APP ELEMENT
+     * ==========================================================
+     */
+
+    const app =
+      document.getElementById("app");
+
+
+    /*
+     * ==========================================================
+     * INITIAL RENDER
+     * ==========================================================
+     */
+
+    renderQuestion();
+
+
+    /*
+     * ==========================================================
+     * QUESTION SCREEN
+     * ==========================================================
+     */
+
+    function renderQuestion() {
+
+      currentScreen = "question";
+
+      clearSuccessTimer();
+
+      let gif = GIFS.initial;
+
+      let message =
+        "Em đồng ý làm người yêu anh nha? ❤️";
+
+
+      /*
+       * State theo số lần bấm KHÔNG
+       */
+
+      if (noCount === 1) {
+
+        gif = GIFS.no1;
+
+        message =
+          "Suy nghĩ lại đi mà 🥺❤️";
+
+      }
+
+      else if (noCount === 2) {
+
+        gif = GIFS.no2;
+
+        message =
+          "Không được chọn đâu 😭❤️";
+
+      }
+
+      else if (noCount === 3) {
+
+        gif = GIFS.no3;
+
+        message =
+          "Em chắc chưa đó? 🥺💔";
+
+      }
+
+      else if (noCount >= 4) {
+
+        gif = GIFS.no3;
+
+        message =
+          "Thôi nào... chọn đi mà 🥺❤️";
+      }
+
+
+      /*
+       * Kích thước nút
+       *
+       * yesScale tăng theo noCount
+       * noScale giảm theo noCount
+       */
+
+      const yesScale =
+        Math.min(
+          1 + noCount * 0.28,
+          2.65
+        );
+
+      const noScale =
+        Math.max(
+          1 - noCount * 0.18,
+          0.55
+        );
+
+
+      const noText =
+        noCount >= 4
+          ? "THÔI EM THUA 😭"
+          : "KHÔNG 😭";
+
+
+      app.innerHTML = `
+
+        <section class="card">
+
+          <h1 class="title">
+            ${message}
+          </h1>
+
+          <div class="gif-container">
+            <img
+              src="${gif}"
+              alt="Cute animation"
+              draggable="false"
+            >
+          </div>
+
+          <div class="buttons">
+
+            <button
+              class="btn yes-btn"
+              id="yesBtn"
+              style="
+                transform: scale(${yesScale});
+                z-index: 5;
+              "
+              type="button"
+            >
+              ĐỒNG Ý ❤️
+            </button>
+
+            <button
+              class="btn no-btn"
+              id="noBtn"
+              style="
+                transform: scale(${noScale});
+                z-index: 4;
+              "
+              type="button"
+            >
+              ${noText}
+            </button>
+
+          </div>
+
+        </section>
+      `;
+
+
+      /*
+       * YES
+       */
+
+      document
+        .getElementById("yesBtn")
+        .addEventListener(
+          "click",
+          showSuccess
+        );
+
+
+      /*
+       * NO
+       */
+
+      document
+        .getElementById("noBtn")
+        .addEventListener(
+          "click",
+          handleNo
+        );
+    }
+
+
+    /*
+     * ==========================================================
+     * NO BUTTON
+     * ==========================================================
+     */
+
+    function handleNo() {
+
+      /*
+       * Nếu đã tới trạng thái cuối
+       */
+
+      if (noCount >= 4) {
+
+        showFinalVideo();
+
+        return;
+      }
+
+
+      /*
+       * Tăng số lần từ chối
+       */
+
+      noCount++;
+
+
+      /*
+       * Animation click
+       */
+
+      const noBtn =
+        document.getElementById("noBtn");
+
+      if (noBtn) {
+
+        noBtn.style.transform =
+          "scale(0.82)";
+
+        setTimeout(
+          renderQuestion,
+          180
+        );
+
+      } else {
+
+        renderQuestion();
+
+      }
+    }
+
+
+    /*
+     * ==========================================================
+     * SUCCESS SCREEN
+     * ==========================================================
+     */
+
+    function showSuccess() {
+
+      currentScreen = "success";
+
+      clearSuccessTimer();
+
+      app.innerHTML = `
+
+        <section class="card success">
+
+          <h1 class="title">
+            YEAHHH! EM ĐỒNG Ý RỒI ❤️🥰
+          </h1>
+
+          <div class="success-message">
+            Biết ngay em thương anh màaa 😭❤️
+          </div>
+
+          <div
+            class="gif-container"
+            id="successGifContainer"
+          >
+            <img
+              src="${GIFS.success1}"
+              alt="Celebration"
+              draggable="false"
+            >
+          </div>
+
+        </section>
+      `;
+
+
+      /*
+       * Confetti
+       */
+
+      launchConfetti();
+
+
+      /*
+       * Tim bay mạnh hơn
+       */
+
+      createExtraHearts();
+
+
+      /*
+       * Đổi GIF luân phiên
+       */
+
+      successGifIndex = 0;
+
+      successGifTimer =
+        setInterval(
+          rotateSuccessGif,
+          2800
+        );
+    }
+
+
+    /*
+     * ==========================================================
+     * SUCCESS GIF ROTATION
+     * ==========================================================
+     */
+
+    function rotateSuccessGif() {
+
+      if (currentScreen !== "success") {
+
+        clearSuccessTimer();
+
+        return;
+      }
+
+
+      successGifIndex =
+        (successGifIndex + 1) % 3;
+
+
+      const gifs = [
+        GIFS.success1,
+        GIFS.success2,
+        GIFS.success3
+      ];
+
+
+      const container =
+        document.getElementById(
+          "successGifContainer"
+        );
+
+
+      if (!container) {
+        return;
+      }
+
+
+      const oldImg =
+        container.querySelector("img");
+
+
+      /*
+       * Fade out
+       */
+
+      if (oldImg) {
+
+        oldImg.style.opacity = "0";
+        oldImg.style.transform =
+          "scale(0.9)";
+
+      }
+
+
+      setTimeout(() => {
+
+        if (currentScreen !== "success") {
+          return;
+        }
+
+        container.innerHTML = `
+          <img
+            src="${gifs[successGifIndex]}"
+            alt="Celebration"
+            draggable="false"
+          >
+        `;
+
+      }, 220);
+    }
+
+
+    /*
+     * ==========================================================
+     * FINAL VIDEO
+     * ==========================================================
+     */
+
+    function showFinalVideo() {
+
+      currentScreen = "final";
+
+      clearSuccessTimer();
+
+
+      app.innerHTML = `
+
+        <section class="card final-screen">
+
+          <h1 class="title">
+            EM THẬT SỰ KHÔNG YÊU ANH SAO? 😭💔
+          </h1>
+
+          <div class="video-wrapper">
+
+            <video
+              id="finalVideo"
+              controls
+              playsinline
+              webkit-playsinline
+              preload="auto"
+              muted
+              autoplay
+            >
+              <source
+                src="${FINAL_VIDEO}"
+                type="video/mp4"
+              >
+
+              Trình duyệt của bạn không hỗ trợ
+              video HTML5.
+            </video>
+
+          </div>
+
+          <button
+            class="sound-btn"
+            id="soundBtn"
+            type="button"
+          >
+            🔊 BẬT ÂM THANH
+          </button>
+
+          <br>
+
+          <button
+            class="restart-btn"
+            id="restartBtn"
+            type="button"
+          >
+            🔄 Chơi lại từ đầu
+          </button>
+
+        </section>
+      `;
+
+
+      const video =
+        document.getElementById(
+          "finalVideo"
+        );
+
+      const soundBtn =
+        document.getElementById(
+          "soundBtn"
+        );
+
+
+      /*
+       * Cố gắng autoplay muted.
+       *
+       * Muted autoplay thường được trình duyệt
+       * cho phép hơn autoplay có âm thanh.
+       */
+
+      const playPromise =
+        video.play();
+
+
+      if (
+        playPromise !== undefined
+      ) {
+
+        playPromise
+          .then(() => {
+
+            /*
+             * Autoplay thành công.
+             * Hiện nút bật âm thanh.
+             */
+
+            soundBtn.classList.add("show");
+
+          })
+          .catch(() => {
+
+            /*
+             * Nếu browser vẫn chặn autoplay,
+             * hiện nút để người dùng tự bắt đầu.
+             */
+
+            soundBtn.textContent =
+              "▶️ PHÁT VIDEO + BẬT ÂM THANH";
+
+            soundBtn.classList.add("show");
+
+          });
+      }
+
+
+      /*
+       * Nút âm thanh
+       */
+
+      soundBtn.addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            video.muted = false;
+
+            await video.play();
+
+            soundBtn.classList.remove(
+              "show"
+            );
+
+          } catch (error) {
+
+            /*
+             * Nếu browser vẫn yêu cầu
+             * thao tác trực tiếp của người dùng,
+             * click hiện tại vẫn là user gesture,
+             * nên thông thường play sẽ thành công.
+             */
+
+            video.muted = false;
+
+            video.controls = true;
+
+          }
+
+        }
+      );
+
+
+      /*
+       * Restart
+       */
+
+      document
+        .getElementById("restartBtn")
+        .addEventListener(
+          "click",
+          () => {
+
+            noCount = 0;
+
+            renderQuestion();
+
+          }
+        );
+    }
+
+
+    /*
+     * ==========================================================
+     * CONFETTI
+     * ==========================================================
+     */
+
+    function launchConfetti() {
+
+      const container =
+        document.getElementById(
+          "confetti"
+        );
+
+
+      container.innerHTML = "";
+
+
+      const pieces = 100;
+
+
+      for (
+        let i = 0;
+        i < pieces;
+        i++
+      ) {
+
+        const piece =
+          document.createElement(
+            "div"
+          );
+
+
+        piece.className =
+          "confetti";
+
+
+        piece.style.left =
+          Math.random() * 100 + "%";
+
+
+        piece.style.width =
+          5 + Math.random() * 8 + "px";
+
+
+        piece.style.height =
+          8 + Math.random() * 14 + "px";
+
+
+        piece.style.borderRadius =
+          Math.random() > 0.5
+            ? "50%"
+            : "2px";
+
+
+        piece.style.background =
+          [
+            "#ff5fa2",
+            "#ff9ecb",
+            "#ffd166",
+            "#9be7ff",
+            "#c8a2ff",
+            "#ff7eb3"
+          ][
+            Math.floor(
+              Math.random() * 6
+            )
+          ];
+
+
+        piece.style.setProperty(
+          "--duration",
+          2 + Math.random() * 3 + "s"
+        );
+
+
+        piece.style.animationDelay =
+          Math.random() * 0.8 + "s";
+
+
+        container.appendChild(piece);
+
+
+        setTimeout(
+          () => piece.remove(),
+          5000
+        );
+      }
+    }
+
+
+    /*
+     * ==========================================================
+     * FLOATING HEARTS
+     * ==========================================================
+     */
+
+    function createFloatingHeart() {
+
+      const container =
+        document.getElementById(
+          "hearts"
+        );
+
+
+      const heart =
+        document.createElement(
+          "div"
+        );
+
+
+      heart.className =
+        "floating-heart";
+
+
+      heart.textContent =
+        [
+          "❤️",
+          "💕",
+          "💗",
+          "💖",
+          "💓",
+          "💘"
+        ][
+          Math.floor(
+            Math.random() * 6
+          )
+        ];
+
+
+      heart.style.left =
+        Math.random() * 100 + "%";
+
+
+      heart.style.fontSize =
+        14 + Math.random() * 25 + "px";
+
+
+      heart.style.animationDuration =
+        6 + Math.random() * 8 + "s";
+
+
+      heart.style.animationDelay =
+        Math.random() * 2 + "s";
+
+
+      container.appendChild(heart);
+
+
+      setTimeout(
+        () => heart.remove(),
+        16000
+      );
+    }
+
+
+    /*
+     * Tạo tim liên tục
+     */
+
+    setInterval(
+      createFloatingHeart,
+      900
+    );
+
+
+    /*
+     * Tim bổ sung ở màn hình YES
+     */
+
+    function createExtraHearts() {
+
+      for (
+        let i = 0;
+        i < 15;
+        i++
+      ) {
+
+        setTimeout(
+          createFloatingHeart,
+          i * 120
+        );
+
+      }
+    }
+
+
+    /*
+     * ==========================================================
+     * CLEANUP
+     * ==========================================================
+     */
+
+    function clearSuccessTimer() {
+
+      if (successGifTimer) {
+
+        clearInterval(
+          successGifTimer
+        );
+
+        successGifTimer = null;
+
+      }
+    }
+
+  </script>
+
+</body>
+</html>
